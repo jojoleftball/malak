@@ -191,6 +191,13 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTranslations();
     document.getElementById('userId').textContent = userId;
     document.getElementById('userQr').textContent = userQr;
+    
+    // Trigger scroll reveal for visible elements
+    setTimeout(() => {
+        if (window.animationController) {
+            animationController.observeElements();
+        }
+    }, 100);
 });
 
 // Language functions
@@ -221,13 +228,21 @@ function handleLogin() {
     const password = document.getElementById('password').value;
     
     if (!email || !password) {
-        alert(currentLang === 'en' ? 'Please fill in all fields' : 'يرجى ملء جميع الحقول');
+        window.toast.warning(currentLang === 'en' ? 'Please fill in all fields' : 'يرجى ملء جميع الحقول');
         return false;
     }
     
+    window.toast.success(currentLang === 'en' ? 'Login successful!' : 'تم تسجيل الدخول بنجاح!');
+    
     // Show welcome page first
-    document.getElementById('loginPage').classList.add('hidden');
-    document.getElementById('welcomePage').classList.remove('hidden');
+    setTimeout(() => {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('welcomePage').classList.remove('hidden');
+        if (window.animationController) {
+            animationController.observeElements();
+        }
+    }, 500);
+    
     return false;
 }
 
@@ -237,13 +252,21 @@ function handleSignup() {
     const password = document.getElementById('signupPassword').value;
     
     if (!name || !email || !password) {
-        alert(currentLang === 'en' ? 'Please fill in all fields' : 'يرجى ملء جميع الحقول');
+        window.toast.warning(currentLang === 'en' ? 'Please fill in all fields' : 'يرجى ملء جميع الحقول');
         return false;
     }
     
+    window.toast.success(currentLang === 'en' ? 'Account created successfully!' : 'تم إنشاء الحساب بنجاح!');
+    
     // Show welcome page first
-    document.getElementById('loginPage').classList.add('hidden');
-    document.getElementById('welcomePage').classList.remove('hidden');
+    setTimeout(() => {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('welcomePage').classList.remove('hidden');
+        if (window.animationController) {
+            animationController.observeElements();
+        }
+    }, 500);
+    
     return false;
 }
 
@@ -264,6 +287,13 @@ function showMainApp() {
     document.getElementById('welcomePage').classList.add('hidden');
     document.getElementById('mainApp').classList.remove('hidden');
     renderProducts();
+    
+    // Trigger scroll reveal for products
+    setTimeout(() => {
+        if (window.animationController) {
+            animationController.observeElements();
+        }
+    }, 100);
 }
 
 function logout() {
@@ -313,9 +343,9 @@ function renderProducts() {
     const productsGrid = document.getElementById('productsGrid');
     productsGrid.innerHTML = '';
     
-    products.forEach(product => {
+    products.forEach((product, index) => {
         const productCard = document.createElement('div');
-        productCard.className = 'product-card';
+        productCard.className = `product-card card-3d hover-lift scroll-reveal stagger-${(index % 6) + 1}`;
         
         const quantity = cart[product.id] || 0;
         const maxQtyReached = quantity >= 5;
@@ -375,10 +405,17 @@ function addToCart(productId) {
         renderProducts();
         updateCartBadge();
         
-        // Show success feedback
+        // Show success feedback with toast
         const product = products.find(p => p.id === productId);
         const productName = currentLang === 'en' ? product.nameEn : product.nameAr;
-        alert(`${currentLang === 'en' ? 'Added to cart:' : 'تم الإضافة إلى السلة:'} ${productName}`);
+        window.toast.success(`${currentLang === 'en' ? 'Added to cart:' : 'تم الإضافة:'} ${productName}`);
+        
+        // Trigger scroll reveal for new products
+        setTimeout(() => {
+            if (window.animationController) {
+                animationController.observeElements();
+            }
+        }, 50);
     }
 }
 
@@ -486,7 +523,7 @@ function handleCheckout() {
     const totalItems = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
     
     if (totalItems === 0) {
-        alert(currentLang === 'en' ? 'Your cart is empty!' : 'سلة التسوق فارغة!');
+        window.toast.warning(currentLang === 'en' ? 'Your cart is empty!' : 'سلة التسوق فارغة!');
         return;
     }
     
@@ -500,7 +537,13 @@ function handleCheckout() {
         : `تأكيد شراء ${totalItems} عنصر بمبلغ ${totalPrice} جنيه؟ التحويل إلى: 01200206113`;
     
     if (confirm(confirmMessage)) {
-        alert(currentLang === 'en' ? 'Order placed successfully! Delivery in 1 day.' : 'تم تقديم الطلب بنجاح! التوصيل خلال يوم واحد.');
+        window.toast.success(currentLang === 'en' ? 'Order placed successfully! Delivery in 1 day.' : 'تم تقديم الطلب بنجاح! التوصيل خلال يوم واحد.');
+        
+        // Create confetti effect
+        if (window.animationController) {
+            animationController.createConfetti(window.innerWidth / 2, window.innerHeight / 2, 50);
+        }
+        
         cart = {};
         hideCart();
         renderProducts();
@@ -511,7 +554,7 @@ function handleCheckout() {
 function handleChangePassword() {
     const newPassword = prompt(currentLang === 'en' ? 'Enter new password:' : 'أدخل كلمة المرور الجديدة:');
     if (newPassword) {
-        alert(currentLang === 'en' ? 'Password changed successfully!' : 'تم تغيير كلمة المرور بنجاح!');
+        window.toast.success(currentLang === 'en' ? 'Password changed successfully!' : 'تم تغيير كلمة المرور بنجاح!');
     }
 }
 

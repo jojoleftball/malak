@@ -6,27 +6,28 @@
     <title>𝚃𝚛𝚊𝚜𝚑 𝟸 𝚌𝚊𝚜𝚑 - تحويل النفايات إلى كنوز</title>
     <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
-<body>
+<body class="animated-gradient">
     <!-- Login Page -->
     <div id="loginPage" class="login-container">
-        <div class="login-box">
-            <div class="logo-container">
+        <div class="login-box glass glow-border">
+            <div class="logo-container scroll-reveal">
                 <img src="images/logo.png" alt="Trash 2 Cash Logo" class="logo-image">
             </div>
-            <h1>𝚃𝚛𝚊𝚜𝚑 𝟸 𝚌𝚊𝚜𝚑</h1>
-            <p id="loginSubtitle">تحويل النفايات إلى كنوز</p>
+            <h1 class="gradient-text scroll-reveal stagger-1">𝚃𝚛𝚊𝚜𝚑 𝟸 𝚌𝚊𝚜𝚑</h1>
+            <p id="loginSubtitle" class="scroll-reveal stagger-2">تحويل النفايات إلى كنوز</p>
             
             <div id="loginForm">
-                <div class="form-group">
+                <div class="form-group scroll-reveal stagger-3">
                     <label id="emailLabel">البريد الإلكتروني</label>
                     <input type="email" id="email" placeholder="your@email.com">
                 </div>
-                <div class="form-group">
+                <div class="form-group scroll-reveal stagger-4">
                     <label id="passwordLabel">كلمة المرور</label>
                     <input type="password" id="password" placeholder="••••••••">
                 </div>
-                <button type="button" class="btn-primary" onclick="handleLogin()">
+                <button type="button" class="btn-primary ripple-effect magnetic-btn scroll-reveal stagger-5" onclick="handleLogin()">
                     <span id="loginBtn">تسجيل الدخول</span>
                 </button>
                 <p class="text-center">
@@ -36,19 +37,19 @@
             </div>
             
             <div id="signupForm" class="hidden">
-                <div class="form-group">
+                <div class="form-group scroll-reveal stagger-1">
                     <label id="nameLabel">الاسم</label>
                     <input type="text" id="name" placeholder="اسمك">
                 </div>
-                <div class="form-group">
+                <div class="form-group scroll-reveal stagger-2">
                     <label id="emailLabel2">البريد الإلكتروني</label>
                     <input type="email" id="signupEmail" placeholder="your@email.com">
                 </div>
-                <div class="form-group">
+                <div class="form-group scroll-reveal stagger-3">
                     <label id="passwordLabel2">كلمة المرور</label>
                     <input type="password" id="signupPassword" placeholder="••••••••">
                 </div>
-                <button type="button" class="btn-primary" onclick="handleSignup()">
+                <button type="button" class="btn-primary ripple-effect magnetic-btn scroll-reveal stagger-4" onclick="handleSignup()">
                     <span id="signupBtn">إنشاء حساب</span>
                 </button>
                 <p class="text-center">
@@ -57,11 +58,11 @@
                 </p>
             </div>
             
-            <div class="theme-lang-controls">
-                <button type="button" class="theme-toggle" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle dark/light theme">
+            <div class="theme-lang-controls scroll-reveal stagger-6">
+                <button type="button" class="theme-toggle ripple-effect hover-lift" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle dark/light theme">
                     <span class="theme-icon">🌙</span>
                 </button>
-                <button type="button" class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                <button type="button" class="lang-toggle ripple-effect hover-lift" onclick="toggleLanguage()" aria-label="Toggle language">
                     <span id="langSwitch">🇺🇸 English</span>
                 </button>
             </div>
@@ -70,13 +71,13 @@
 
     <!-- Welcome Page -->
     <div id="welcomePage" class="welcome-container hidden">
-        <div class="welcome-box">
-            <div class="logo-container">
-                <img src="images/logo.png" alt="Trash 2 Cash Logo" class="logo-image welcome-logo">
+        <div class="welcome-box glass glow-border">
+            <div class="logo-container scroll-reveal">
+                <img src="images/logo.png" alt="Trash 2 Cash Logo" class="logo-image welcome-logo hover-bounce">
             </div>
-            <h1 id="welcomeTitle">مرحباً عزيزي</h1>
-            <p id="welcomeText">مرحباً بك في موقعنا! ساهم معنا في تقدم وطننا.</p>
-            <button class="btn-primary" onclick="showMainApp()">
+            <h1 id="welcomeTitle" class="gradient-text scroll-reveal stagger-1">مرحباً عزيزي</h1>
+            <p id="welcomeText" class="scroll-reveal stagger-2">مرحباً بك في موقعنا! ساهم معنا في تقدم وطننا.</p>
+            <button class="btn-primary ripple-effect magnetic-btn scroll-reveal stagger-3" onclick="showMainApp()">
                 <span id="skipBtn">تخطي</span>
             </button>
         </div>
@@ -210,6 +211,15 @@
         </div>
     </div>
 
+    <!-- Load core utilities first -->
+    <script src="js/toast.js"></script>
+    <script src="js/loader.js"></script>
+    
+    <!-- Load animation and visual effects -->
+    <script src="js/particles.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Load main app logic last (depends on toast.js) -->
     <script src="script.js"></script>
 </body>
-  </html>
+</html>

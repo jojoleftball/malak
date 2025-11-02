@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>𝚃𝚛𝚊𝚜𝚑 𝟸 𝚌𝚊𝚜𝚑 - تحويل النفايات إلى كنوز</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Login Page -->
     <div id="loginPage" class="login-container">
         <div class="login-box">
-            <h1> 𝚃𝚛𝚊𝚜𝚑 𝟸 𝚌𝚊𝚜𝚑 </h1>
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Trash 2 Cash Logo" class="logo-image">
+            </div>
+            <h1>𝚃𝚛𝚊𝚜𝚑 𝟸 𝚌𝚊𝚜𝚑</h1>
             <p id="loginSubtitle">تحويل النفايات إلى كنوز</p>
             
             <div id="loginForm">
@@ -53,8 +57,11 @@
                 </p>
             </div>
             
-            <div class="lang-switch">
-                <button type="button" onclick="toggleLanguage()">
+            <div class="theme-lang-controls">
+                <button type="button" class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button type="button" class="lang-toggle" onclick="toggleLanguage()">
                     <span id="langSwitch">🇺🇸 English</span>
                 </button>
             </div>
@@ -64,6 +71,9 @@
     <!-- Welcome Page -->
     <div id="welcomePage" class="welcome-container hidden">
         <div class="welcome-box">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Trash 2 Cash Logo" class="logo-image welcome-logo">
+            </div>
             <h1 id="welcomeTitle">مرحباً عزيزي</h1>
             <p id="welcomeText">مرحباً بك في موقعنا! ساهم معنا في تقدم وطننا.</p>
             <button class="btn-primary" onclick="showMainApp()">
@@ -76,11 +86,19 @@
     <div id="mainApp" class="app-container hidden">
         <header class="header">
             <div class="header-content">
-                <h1>𝚃𝚛𝚊𝚜𝚑 𝟸 𝚌𝚊𝚜𝚑</h1>
-                <button type="button" class="cart-btn" onclick="showCart()">
-                    🛒
-                    <span id="cartBadge" class="cart-badge hidden">0</span>
-                </button>
+                <div class="header-left">
+                    <img src="images/logo.png" alt="Trash 2 Cash Logo" class="header-logo">
+                    <h1>𝚃𝚛𝚊𝚜𝚑 𝟸 𝚌𝚊𝚜𝚑</h1>
+                </div>
+                <div class="header-right">
+                    <button type="button" class="theme-toggle" onclick="toggleTheme()" id="themeToggleMain">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button type="button" class="cart-btn" onclick="showCart()">
+                        🛒
+                        <span id="cartBadge" class="cart-badge hidden">0</span>
+                    </button>
+                </div>
             </div>
         </header>
         

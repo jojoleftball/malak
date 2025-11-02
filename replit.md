@@ -38,20 +38,40 @@ The project is a fully functional static website with:
    - Session management (client-side)
 
 2. **Shopping Features**
-   - Product catalog with 10 handmade items
+   - Product catalog with 10 handmade items with real images
    - Shopping cart with quantity controls
    - Checkout process with payment instructions
    - Maximum 5 items per product
+   - Animated product cards with hover effects
 
 3. **Multi-language Support**
    - Dynamic language switching
    - RTL (Arabic) and LTR (English) support
    - All UI elements translated
 
-4. **Pages**
+4. **Dark/Light Theme Support**
+   - Seamless theme switching with animated transitions
+   - Theme preference saved in localStorage
+   - Smooth color transitions across all components
+   - Theme-aware icons (moon/sun)
+
+5. **Advanced Animations & Interactions**
+   - Button ripple effects on click
+   - Smooth hover animations on all interactive elements
+   - Floating logo animation
+   - Card entrance animations
+   - Modal fade-in/scale effects
+   - Navigation transitions
+
+6. **Pages**
    - Shop: Product browsing and cart management
    - Help: Survey, ratings, and support links
    - Settings: User ID, QR code, password change, language toggle, logout
+
+7. **Accessibility**
+   - ARIA labels for icon-only buttons
+   - Keyboard navigation support
+   - Screen reader friendly
 
 ### Technical Details
 - **Frontend Framework:** Vanilla JavaScript (no dependencies)
@@ -70,6 +90,11 @@ The project is a fully functional static website with:
 - **2025-11-02:** Configured for Replit environment with Python HTTP server
 - **2025-11-02:** Added .gitignore for Python and common development files
 - **2025-11-02:** Created project documentation
+- **2025-11-02:** Integrated custom logo throughout website (favicon, login, welcome, header)
+- **2025-11-02:** Implemented dark/light theme toggle with localStorage persistence
+- **2025-11-02:** Added comprehensive CSS animations (button ripples, hover effects, smooth transitions)
+- **2025-11-02:** Enhanced UX with floating logo animation, card hover effects, and interactive elements
+- **2025-11-02:** Added accessibility improvements (aria-labels for theme and cart buttons)
 
 ## Product Catalog
 The site features 10 handmade products including:

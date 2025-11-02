@@ -1,8 +1,41 @@
 // State
 let currentLang = 'ar';
+let currentTheme = 'light';
 let cart = {};
 let userId = 'USER' + Math.random().toString(36).substr(2, 9).toUpperCase();
 let userQr = 'QR' + Math.random().toString(36).substr(2, 9).toUpperCase();
+
+// Theme initialization
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    currentTheme = savedTheme;
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcons();
+}
+
+// Toggle theme
+function toggleTheme() {
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('theme', currentTheme);
+    updateThemeIcons();
+}
+
+// Update theme icons
+function updateThemeIcons() {
+    const themeIcons = document.querySelectorAll('.theme-icon');
+    const themeButtons = document.querySelectorAll('.theme-toggle');
+    const iconText = currentTheme === 'light' ? '🌙' : '☀️';
+    const ariaLabel = currentTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme';
+    
+    themeIcons.forEach(icon => {
+        icon.textContent = iconText;
+    });
+    
+    themeButtons.forEach(button => {
+        button.setAttribute('aria-label', ariaLabel);
+    });
+}
 
 // Products with real images
 const products = [
@@ -154,6 +187,7 @@ const translations = {
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
+    initTheme();
     updateTranslations();
     document.getElementById('userId').textContent = userId;
     document.getElementById('userQr').textContent = userQr;

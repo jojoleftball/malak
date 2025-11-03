@@ -115,6 +115,7 @@ const products = [
 const translations = {
     en: {
         loginSubtitle: 'Transform Trash into Treasure',
+        companyDesc: 'We transform waste and recycled materials into beautiful and functional products, while contributing to environmental protection and building a sustainable future.',
         emailLabel: 'Email',
         passwordLabel: 'Password',
         nameLabel: 'Name',
@@ -150,6 +151,7 @@ const translations = {
     },
     ar: {
         loginSubtitle: 'تحويل النفايات إلى كنوز',
+        companyDesc: 'نحول النفايات والمواد المعاد تدويرها إلى منتجات جميلة وعملية، مع المساهمة في حماية البيئة وبناء مستقبل مستدام.',
         emailLabel: 'البريد الإلكتروني',
         passwordLabel: 'كلمة المرور',
         nameLabel: 'الاسم',
@@ -288,12 +290,17 @@ function showMainApp() {
     document.getElementById('mainApp').classList.remove('hidden');
     renderProducts();
     
-    // Trigger scroll reveal for products
+    // Trigger scroll reveal for products - make them visible immediately
     setTimeout(() => {
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        revealElements.forEach(el => {
+            el.classList.add('revealed');
+        });
+        
         if (window.animationController) {
             animationController.observeElements();
         }
-    }, 100);
+    }, 50);
 }
 
 function logout() {

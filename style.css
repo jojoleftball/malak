@@ -228,28 +228,7 @@ body::before {
     box-shadow: var(--shadow-xl), inset 0 0 0 1px var(--glass-border);
     max-width: 450px;
     width: 100%;
-    animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid var(--glass-border);
-    position: relative;
-    overflow: hidden;
-}
-
-.login-box::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-    transform: rotate(45deg);
-    pointer-events: none;
-}
-
-.login-box:hover {
-    box-shadow: var(--shadow-xl), 0 0 60px rgba(16, 185, 129, 0.15), inset 0 0 0 1px var(--glass-border);
-    transform: translateY(-4px);
 }
 
 .login-box h1 {
@@ -331,10 +310,8 @@ body::before {
     border-radius: 16px;
     font-size: 16px;
     background: var(--input-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     color: var(--text-primary);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: none;
     font-weight: 500;
 }
 
@@ -345,10 +322,6 @@ body::before {
 
 .form-group input:focus {
     outline: none;
-    border-color: var(--input-border);
-    background: var(--input-bg);
-    box-shadow: none;
-    transform: none;
 }
 
 .btn-primary {

@@ -120,13 +120,13 @@
 
 /* Gradient Background Animation */
 .animated-gradient {
-    background: linear-gradient(270deg, 
-        var(--bg-gradient-1), 
-        var(--primary-color), 
-        var(--bg-gradient-2),
-        var(--primary-dark));
+    background: linear-gradient(135deg, 
+        var(--bg-gradient-1) 0%, 
+        var(--bg-gradient-2) 35%,
+        var(--bg-gradient-3) 65%,
+        var(--bg-gradient-1) 100%);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 20s ease-in-out infinite;
 }
 
 /* Shimmer Effect */
@@ -153,15 +153,17 @@
 
 /* Glass Morphism */
 .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] .glass {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 /* 3D Card Tilt Effect */
@@ -438,16 +440,19 @@
 /* Text Gradient Animation */
 .gradient-text {
     background: linear-gradient(
-        90deg,
+        135deg,
         var(--primary-color),
+        var(--accent-color),
         var(--primary-light),
+        var(--accent-color),
         var(--primary-color)
     );
-    background-size: 200% auto;
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradientShift 3s linear infinite;
+    animation: gradientShift 5s ease-in-out infinite;
+    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.3));
 }
 
 /* Glowing Border */

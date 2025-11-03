@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/animations.css">
 </head>
 <body class="animated-gradient">
-    <!-- Login Page -->
     <div id="loginPage" class="login-container">
         <div class="login-box glass glow-border">
             <div class="logo-container scroll-reveal">
@@ -74,7 +73,6 @@
         </div>
     </div>
 
-    <!-- Welcome Page -->
     <div id="welcomePage" class="welcome-container hidden">
         <div class="welcome-box glass glow-border">
             <div class="logo-container scroll-reveal">
@@ -88,7 +86,6 @@
         </div>
     </div>
     
-    <!-- Main App -->
     <div id="mainApp" class="app-container hidden">
         <header class="header">
             <div class="header-content">
@@ -109,12 +106,10 @@
         </header>
         
         <main class="main-content">
-            <!-- Shop Page -->
             <div id="shopPage" class="page-content">
                 <div class="products-grid" id="productsGrid"></div>
             </div>
             
-            <!-- Help Page -->
             <div id="helpPage" class="page-content hidden">
                 <div class="help-container">
                     <div class="help-box">
@@ -134,7 +129,6 @@
                 </div>
             </div>
             
-            <!-- Settings Page -->
             <div id="settingsPage" class="page-content hidden">
                 <div class="settings-container">
                     <div class="settings-box">
@@ -161,7 +155,6 @@
             </div>
         </main>
 
-        <!-- Bottom Navigation -->
         <nav class="bottom-nav">
             <div class="nav-content">
                 <button type="button" class="nav-btn active" onclick="showPage('shop')">
@@ -180,7 +173,6 @@
         </nav>
     </div>
     
-    <!-- Cart Modal -->
     <div id="cartModal" class="modal-overlay hidden" onclick="closeCartIfOutside(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -216,15 +208,12 @@
         </div>
     </div>
 
-    <!-- Load core utilities first -->
     <script src="js/toast.js"></script>
     <script src="js/loader.js"></script>
     
-    <!-- Load animation and visual effects -->
     <script src="js/particles.js"></script>
     <script src="js/animations.js"></script>
     
-    <!-- Load main app logic last (depends on toast.js) -->
     <script src="script.js"></script>
 </body>
 </html>

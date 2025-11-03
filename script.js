@@ -1,11 +1,10 @@
-// State
+
 let currentLang = 'ar';
 let currentTheme = 'light';
 let cart = {};
 let userId = 'USER' + Math.random().toString(36).substr(2, 9).toUpperCase();
 let userQr = 'QR' + Math.random().toString(36).substr(2, 9).toUpperCase();
 
-// Theme initialization
 function initTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     currentTheme = savedTheme;
@@ -13,7 +12,6 @@ function initTheme() {
     updateThemeIcons();
 }
 
-// Toggle theme
 function toggleTheme() {
     currentTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', currentTheme);
@@ -21,7 +19,6 @@ function toggleTheme() {
     updateThemeIcons();
 }
 
-// Update theme icons
 function updateThemeIcons() {
     const themeIcons = document.querySelectorAll('.theme-icon');
     const themeButtons = document.querySelectorAll('.theme-toggle');
@@ -37,7 +34,6 @@ function updateThemeIcons() {
     });
 }
 
-// Products with real images
 const products = [
     { 
         id: 1, 
@@ -111,7 +107,6 @@ const products = [
     }
 ];
 
-// Translations
 const translations = {
     en: {
         loginSubtitle: 'Transform Trash into Treasure',
@@ -187,14 +182,12 @@ const translations = {
     }
 };
 
-// Initialize app
 document.addEventListener('DOMContentLoaded', function() {
     initTheme();
     updateTranslations();
     document.getElementById('userId').textContent = userId;
     document.getElementById('userQr').textContent = userQr;
     
-    // Trigger scroll reveal for visible elements
     setTimeout(() => {
         if (window.animationController) {
             animationController.observeElements();
@@ -202,7 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 });
 
-// Language functions
 function toggleLanguage() {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -224,7 +216,6 @@ function updateTranslations() {
     });
 }
 
-// Authentication functions
 function handleLogin() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -236,7 +227,6 @@ function handleLogin() {
     
     window.toast.success(currentLang === 'en' ? 'Login successful!' : 'تم تسجيل الدخول بنجاح!');
     
-    // Show welcome page first
     setTimeout(() => {
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('welcomePage').classList.remove('hidden');
@@ -260,7 +250,6 @@ function handleSignup() {
     
     window.toast.success(currentLang === 'en' ? 'Account created successfully!' : 'تم إنشاء الحساب بنجاح!');
     
-    // Show welcome page first
     setTimeout(() => {
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('welcomePage').classList.remove('hidden');
@@ -290,7 +279,6 @@ function showMainApp() {
     document.getElementById('mainApp').classList.remove('hidden');
     renderProducts();
     
-    // Trigger scroll reveal for products - make them visible immediately
     setTimeout(() => {
         const revealElements = document.querySelectorAll('.scroll-reveal');
         revealElements.forEach(el => {
@@ -309,34 +297,27 @@ function logout() {
     cart = {};
     updateCartBadge();
     
-    // Reset form fields
     document.getElementById('email').value = '';
     document.getElementById('password').value = '';
     document.getElementById('name').value = '';
     document.getElementById('signupEmail').value = '';
     document.getElementById('signupPassword').value = '';
     
-    // Return to login form
     document.getElementById('loginForm').classList.remove('hidden');
     document.getElementById('signupForm').classList.add('hidden');
 }
 
-// Navigation functions
 function showPage(page) {
-    // Hide all pages
     document.getElementById('shopPage').classList.add('hidden');
     document.getElementById('helpPage').classList.add('hidden');
     document.getElementById('settingsPage').classList.add('hidden');
     
-    // Remove active class from all nav buttons
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     
-    // Show selected page
     document.getElementById(page + 'Page').classList.remove('hidden');
     
-    // Set active nav button
     const navButtons = document.querySelectorAll('.nav-btn');
     navButtons.forEach((btn, index) => {
         if (page === 'shop' && index === 0) btn.classList.add('active');
@@ -345,7 +326,6 @@ function showPage(page) {
     });
 }
 
-// Product functions
 function renderProducts() {
     const productsGrid = document.getElementById('productsGrid');
     productsGrid.innerHTML = '';
@@ -412,12 +392,10 @@ function addToCart(productId) {
         renderProducts();
         updateCartBadge();
         
-        // Show success feedback with toast
         const product = products.find(p => p.id === productId);
         const productName = currentLang === 'en' ? product.nameEn : product.nameAr;
         window.toast.success(`${currentLang === 'en' ? 'Added to cart:' : 'تم الإضافة:'} ${productName}`);
         
-        // Trigger scroll reveal for new products
         setTimeout(() => {
             if (window.animationController) {
                 animationController.observeElements();
@@ -426,7 +404,6 @@ function addToCart(productId) {
     }
 }
 
-// Cart functions
 function updateCartBadge() {
     const cartBadge = document.getElementById('cartBadge');
     const totalItems = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
@@ -509,7 +486,7 @@ function renderCart() {
 
 function updateCartItem(productId, change) {
     updateQuantity(productId, change);
-    showCart(); // Refresh cart display
+    showCart();
 }
 
 function removeFromCart(productId) {
@@ -518,7 +495,6 @@ function removeFromCart(productId) {
     renderProducts();
     updateCartBadge();
     
-    // If cart is empty after removal, show empty state
     const totalItems = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
     if (totalItems === 0) {
         document.getElementById('cartEmpty').classList.remove('hidden');
@@ -546,7 +522,6 @@ function handleCheckout() {
     if (confirm(confirmMessage)) {
         window.toast.success(currentLang === 'en' ? 'Order placed successfully! Delivery in 1 day.' : 'تم تقديم الطلب بنجاح! التوصيل خلال يوم واحد.');
         
-        // Create confetti effect
         if (window.animationController) {
             animationController.createConfetti(window.innerWidth / 2, window.innerHeight / 2, 50);
         }

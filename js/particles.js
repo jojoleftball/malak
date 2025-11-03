@@ -1,4 +1,4 @@
-// Particle Background System
+
 class ParticleSystem {
     constructor(container) {
         this.container = container;
@@ -43,7 +43,6 @@ class ParticleSystem {
     }
 }
 
-// Initialize particles when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     const particlesContainer = document.createElement('div');
     particlesContainer.className = 'particles-container';

@@ -1,4 +1,4 @@
-// Advanced Animation Controller
+
 class AnimationController {
     constructor() {
         this.observers = new Map();
@@ -12,7 +12,6 @@ class AnimationController {
         this.initRippleEffects();
     }
 
-    // Scroll-triggered animations using Intersection Observer
     initScrollReveal() {
         const revealObserver = new IntersectionObserver(
             (entries) => {
@@ -30,7 +29,6 @@ class AnimationController {
 
         this.observers.set('reveal', revealObserver);
 
-        // Observe elements when they're added
         this.observeElements();
     }
 
@@ -45,7 +43,6 @@ class AnimationController {
         }
     }
 
-    // 3D Card Tilt Effect
     init3DCards() {
         document.addEventListener('mousemove', (e) => {
             const cards = document.querySelectorAll('.card-3d');
@@ -77,7 +74,6 @@ class AnimationController {
         });
     }
 
-    // Parallax scroll effect
     initParallax() {
         let ticking = false;
         
@@ -103,7 +99,6 @@ class AnimationController {
         });
     }
 
-    // Enhanced ripple effect
     initRippleEffects() {
         document.addEventListener('click', (e) => {
             const target = e.target.closest('.ripple-effect');
@@ -127,7 +122,6 @@ class AnimationController {
         });
     }
 
-    // Animate counter numbers
     animateCounter(element, target, duration = 2000) {
         const start = 0;
         const increment = target / (duration / 16);
@@ -144,7 +138,6 @@ class AnimationController {
         }, 16);
     }
 
-    // Create confetti effect
     createConfetti(x, y, count = 30) {
         const colors = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
         
@@ -163,7 +156,6 @@ class AnimationController {
         }
     }
 
-    // Magnetic button effect
     initMagneticButtons() {
         const buttons = document.querySelectorAll('.magnetic-btn');
         
@@ -183,11 +175,9 @@ class AnimationController {
     }
 }
 
-// Initialize animation controller
 let animationController;
 document.addEventListener('DOMContentLoaded', () => {
     animationController = new AnimationController();
 });
 
-// Export for use in other scripts
 window.AnimationController = AnimationController;

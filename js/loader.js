@@ -1,4 +1,4 @@
-// Loading States Manager
+
 class LoaderManager {
     constructor() {
         this.createStyles();

@@ -1,4 +1,4 @@
-// Toast Notification System
+
 class ToastManager {
     constructor() {
         this.container = this.createContainer();
@@ -103,7 +103,6 @@ class ToastManager {
     }
 }
 
-// Add CSS for toast animations
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideInRight {
@@ -139,5 +138,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Create global toast instance
 window.toast = new ToastManager();

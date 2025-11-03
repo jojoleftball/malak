@@ -278,17 +278,6 @@ function showMainApp() {
     document.getElementById('welcomePage').classList.add('hidden');
     document.getElementById('mainApp').classList.remove('hidden');
     renderProducts();
-    
-    setTimeout(() => {
-        const revealElements = document.querySelectorAll('.scroll-reveal');
-        revealElements.forEach(el => {
-            el.classList.add('revealed');
-        });
-        
-        if (window.animationController) {
-            animationController.observeElements();
-        }
-    }, 50);
 }
 
 function logout() {
@@ -332,7 +321,7 @@ function renderProducts() {
     
     products.forEach((product, index) => {
         const productCard = document.createElement('div');
-        productCard.className = `product-card card-3d hover-lift scroll-reveal stagger-${(index % 6) + 1}`;
+        productCard.className = `product-card card-3d hover-lift`;
         
         const quantity = cart[product.id] || 0;
         const maxQtyReached = quantity >= 5;
@@ -395,12 +384,6 @@ function addToCart(productId) {
         const product = products.find(p => p.id === productId);
         const productName = currentLang === 'en' ? product.nameEn : product.nameAr;
         window.toast.success(`${currentLang === 'en' ? 'Added to cart:' : 'تم الإضافة:'} ${productName}`);
-        
-        setTimeout(() => {
-            if (window.animationController) {
-                animationController.observeElements();
-            }
-        }, 50);
     }
 }
 

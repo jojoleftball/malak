@@ -311,7 +311,7 @@ body::before {
     font-size: 16px;
     background: var(--input-bg);
     color: var(--text-primary);
-    transition: none;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     font-weight: 500;
 }
 
@@ -322,12 +322,6 @@ body::before {
 
 .form-group input:focus {
     outline: none;
-    border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 1);
-}
-
-[data-theme="dark"] .form-group input:focus {
-    background: rgba(30, 41, 59, 1);
     border-color: var(--primary-color);
 }
 

@@ -345,10 +345,10 @@ body::before {
 
 .form-group input:focus {
     outline: none;
-    border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12), 0 8px 20px rgba(16, 185, 129, 0.15);
-    transform: translateY(-3px) scale(1.01);
+    border-color: var(--input-border);
+    background: var(--input-bg);
+    box-shadow: none;
+    transform: none;
 }
 
 .btn-primary {

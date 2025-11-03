@@ -2,8 +2,10 @@
 let currentLang = 'ar';
 let currentTheme = 'light';
 let cart = {};
-let userId = 'USER' + Math.random().toString(36).substr(2, 9).toUpperCase();
-let userQr = 'QR' + Math.random().toString(36).substr(2, 9).toUpperCase();
+let userId = localStorage.getItem('userId') || 'USER' + Math.random().toString(36).substr(2, 9).toUpperCase();
+let userName = localStorage.getItem('userName') || '';
+let userEmail = localStorage.getItem('userEmail') || '';
+let qrCodeGenerated = false;
 
 function initTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -186,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTheme();
     updateTranslations();
     document.getElementById('userId').textContent = userId;
-    document.getElementById('userQr').textContent = userQr;
+    localStorage.setItem('userId', userId);
     
     setTimeout(() => {
         if (window.animationController) {
@@ -216,6 +218,11 @@ function updateTranslations() {
     });
 }
 
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 function handleLogin() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -224,6 +231,15 @@ function handleLogin() {
         window.toast.warning(currentLang === 'en' ? 'Please fill in all fields' : 'يرجى ملء جميع الحقول');
         return false;
     }
+    
+    if (!validateEmail(email)) {
+        window.toast.error(currentLang === 'en' ? 'Please enter a valid email address' : 'يرجى إدخال عنوان بريد إلكتروني صالح');
+        return false;
+    }
+    
+    userEmail = email;
+    localStorage.setItem('userEmail', userEmail);
+    qrCodeGenerated = false;
     
     window.toast.success(currentLang === 'en' ? 'Login successful!' : 'تم تسجيل الدخول بنجاح!');
     
@@ -247,6 +263,17 @@ function handleSignup() {
         window.toast.warning(currentLang === 'en' ? 'Please fill in all fields' : 'يرجى ملء جميع الحقول');
         return false;
     }
+    
+    if (!validateEmail(email)) {
+        window.toast.error(currentLang === 'en' ? 'Please enter a valid email address' : 'يرجى إدخال عنوان بريد إلكتروني صالح');
+        return false;
+    }
+    
+    userName = name;
+    userEmail = email;
+    localStorage.setItem('userName', userName);
+    localStorage.setItem('userEmail', userEmail);
+    qrCodeGenerated = false;
     
     window.toast.success(currentLang === 'en' ? 'Account created successfully!' : 'تم إنشاء الحساب بنجاح!');
     
@@ -296,6 +323,33 @@ function logout() {
     document.getElementById('signupForm').classList.add('hidden');
 }
 
+function generateQRCode() {
+    if (qrCodeGenerated) {
+        return;
+    }
+    
+    const qrContainer = document.getElementById('qrCodeContainer');
+    qrContainer.innerHTML = '';
+    
+    const qrData = JSON.stringify({
+        userId: userId,
+        name: userName || 'Guest',
+        email: userEmail || 'Not provided',
+        timestamp: new Date().toISOString()
+    });
+    
+    const qrcode = new QRCode(qrContainer, {
+        text: qrData,
+        width: 200,
+        height: 200,
+        colorDark: "#42977d",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    
+    qrCodeGenerated = true;
+}
+
 function showPage(page) {
     document.getElementById('shopPage').classList.add('hidden');
     document.getElementById('helpPage').classList.add('hidden');
@@ -313,6 +367,10 @@ function showPage(page) {
         if (page === 'help' && index === 1) btn.classList.add('active');
         if (page === 'settings' && index === 2) btn.classList.add('active');
     });
+    
+    if (page === 'settings') {
+        setTimeout(generateQRCode, 100);
+    }
 }
 
 function renderProducts() {

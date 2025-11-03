@@ -77,10 +77,12 @@ The project is a fully functional static website with:
 - **Frontend Framework:** Vanilla JavaScript (no dependencies)
 - **Design System:** Premium glass morphism with animated gradients
 - **Styling:** Custom CSS with advanced animations and cubic-bezier easing
-- **Color Palette:** Vibrant cyan/emerald/purple gradient scheme
+- **Color Palette:** Teal-green gradient scheme (#42977d, #64aa94, #357a66)
 - **Typography:** Inter font family with optimized letter spacing
 - **Images:** Product images reference `/images/` folder with actual product photos
-- **State Management:** Client-side JavaScript variables
+- **State Management:** Client-side JavaScript variables with localStorage persistence
+- **QR Code Generation:** qrcode.js library for user identification QR codes
+- **Email Validation:** Client-side email format validation with regex
 - **Payment:** Manual bank transfer to 01200206113
 
 ## Development Setup
@@ -108,6 +110,15 @@ The project is a fully functional static website with:
   - Improved form inputs with glow effects and smooth focus states
   - Added backdrop blur to header, navigation, and modal overlays
   - Created cohesive visual identity across light and dark themes
+- **2025-11-03:** **Updated Color Palette and Enhanced Features**
+  - Changed color scheme to teal-green palette (#42977d, #64aa94) for both light and dark themes
+  - Implemented real QR code generation in settings page using qrcode.js library
+  - QR code contains user ID, name, email, and timestamp in JSON format
+  - Added email format validation for signup and signin forms
+  - Wrapped forms in proper HTML5 <form> elements for better accessibility
+  - Added autocomplete attributes to all input fields for improved UX
+  - User data (ID, name, email) now persists in localStorage
+  - QR code displays in settings page with custom brand colors (#42977d)
 
 ## Product Catalog
 The site features 10 handmade products including:

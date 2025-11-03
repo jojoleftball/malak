@@ -22,45 +22,45 @@
                 </p>
             </div>
             
-            <div id="loginForm">
+            <form id="loginForm" onsubmit="return handleLogin()">
                 <div class="form-group scroll-reveal stagger-4">
                     <label id="emailLabel">البريد الإلكتروني</label>
-                    <input type="email" id="email" placeholder="your@email.com">
+                    <input type="email" id="email" placeholder="your@email.com" autocomplete="email" required>
                 </div>
                 <div class="form-group scroll-reveal stagger-5">
                     <label id="passwordLabel">كلمة المرور</label>
-                    <input type="password" id="password" placeholder="••••••••">
+                    <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" required>
                 </div>
-                <button type="button" class="btn-primary ripple-effect magnetic-btn scroll-reveal stagger-6" onclick="handleLogin()">
+                <button type="submit" class="btn-primary ripple-effect magnetic-btn scroll-reveal stagger-6">
                     <span id="loginBtn">تسجيل الدخول</span>
                 </button>
                 <p class="text-center">
                     <span id="noAccountText">ليس لديك حساب؟</span>
                     <a class="link" onclick="toggleSignup()"><span id="signupLink">إنشاء حساب</span></a>
                 </p>
-            </div>
+            </form>
             
-            <div id="signupForm" class="hidden">
+            <form id="signupForm" class="hidden" onsubmit="return handleSignup()">
                 <div class="form-group scroll-reveal stagger-4">
                     <label id="nameLabel">الاسم</label>
-                    <input type="text" id="name" placeholder="اسمك">
+                    <input type="text" id="name" placeholder="اسمك" autocomplete="name" required>
                 </div>
                 <div class="form-group scroll-reveal stagger-5">
                     <label id="emailLabel2">البريد الإلكتروني</label>
-                    <input type="email" id="signupEmail" placeholder="your@email.com">
+                    <input type="email" id="signupEmail" placeholder="your@email.com" autocomplete="email" required>
                 </div>
                 <div class="form-group scroll-reveal stagger-6">
                     <label id="passwordLabel2">كلمة المرور</label>
-                    <input type="password" id="signupPassword" placeholder="••••••••">
+                    <input type="password" id="signupPassword" placeholder="••••••••" autocomplete="new-password" required>
                 </div>
-                <button type="button" class="btn-primary ripple-effect magnetic-btn scroll-reveal stagger-7" onclick="handleSignup()">
+                <button type="submit" class="btn-primary ripple-effect magnetic-btn scroll-reveal stagger-7">
                     <span id="signupBtn">إنشاء حساب</span>
                 </button>
                 <p class="text-center">
                     <span id="haveAccountText">لديك حساب بالفعل؟</span>
                     <a class="link" onclick="toggleSignup()"><span id="loginLink">تسجيل الدخول</span></a>
                 </p>
-            </div>
+            </form>
             
             <div class="theme-lang-controls scroll-reveal stagger-8">
                 <button type="button" class="theme-toggle ripple-effect hover-lift" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle dark/light theme">
@@ -139,7 +139,9 @@
                         </div>
                         <div class="settings-item pink">
                             <div class="settings-label" id="yourQrLabel">رمز QR الخاص بك</div>
-                            <div class="settings-value" id="userQr"></div>
+                            <div id="qrCodeContainer" style="display: flex; justify-content: center; margin-top: 15px;">
+                                <canvas id="qrcode"></canvas>
+                            </div>
                         </div>
                         <button type="button" class="settings-btn change-password" onclick="handleChangePassword()">
                             🔑 <span id="changePasswordBtn">تغيير كلمة المرور</span>
@@ -214,6 +216,7 @@
     <script src="js/particles.js"></script>
     <script src="js/animations.js"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

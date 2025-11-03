@@ -322,6 +322,13 @@ body::before {
 
 .form-group input:focus {
     outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 1);
+}
+
+[data-theme="dark"] .form-group input:focus {
+    background: rgba(30, 41, 59, 1);
+    border-color: var(--primary-color);
 }
 
 .btn-primary {
